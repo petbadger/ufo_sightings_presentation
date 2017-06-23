@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exploring UFO Sightings</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Exploring UFO Sightings">
+  <meta name="author" content="Jared Prins / PetBadger, (June 22, 2017)">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/spacelab.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/styles.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/ufo_icon.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>Exploring UFO Sightings</h1>
+    <h2>For Developing Data Products, Coursera</h2>
+    <p>Jared Prins / PetBadger, (June 22, 2017)<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="firstslide" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>A Shiny App for UFO Sightings</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>View details and locations of UFO Sightings from around the world and for the past 100 years.</p>
+
+<p align="center" style="width:100%;">
+<a href="#" target="_blank">
+<img src="assets/img/ufo_app_screenshot.png" alt="UFO Sightings Shiny App" style="width: 700px;height: 500px;"/>
+</a>
+</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="slidefontcolor" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Purpose of the App</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>A <a href="https://www.kaggle.com/NUFORC/ufo-sightings">UFO Sightings Kaggle contest</a> attempts to discover patterns of <a href="https://github.com/planetsig/ufo-reports">UFO Sightings</a>. The first step to finding patterns in this data is to become familiar with the data. </p>
+
+<p>For my final project in the Cousera &quot;Developing Data Products&quot; course (as part of the Data Science Certification), I thought why not attempt to make something that could be useful for others? Throwing myself into the deep end of building a Shiny App helped me learn Shiny and hopefully created something usable outside of the virtual classroom.</p>
+
+<ul>
+<li><a href="https://petbadger.shinyapps.io/ufo_sightings/" target="_blank" alt="Shiny App">View the Shiny App</a></li>
+<li><a href="https://github.com/petbadger/ufo_sightings/blob/master/get_started.md" target="_blank" alt="Using the app">Learn how to use the App</a></li>
+<li><a href="https://github.com/petbadger/ufo_sightings" target="_blank" alt="App code">View the Github Repo</a></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="slidefontcolor" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>About the Data</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Data set: 11 variables</li>
+<li>Variables: datetime, city, state, country, shape, duration (seconds), duration (hours/min), comments, date posted, latitude, longitude</li>
+<li>Total Observations: 80332 across 6 countries</li>
+<li>Between the years: 1906 to 2014</li>
+<li>For a 22 different UFO shapes: cylinder, light, circle, sphere, disk, fireball, unknown, oval, other, cigar, rectangle, chevron, triangle, formation, NA, changed, egg, diamond, flash, teardrop, cone, cross</li>
+</ul>
+
+<div class="smallfont">(Note that this entire slide is dynamically driven. <a href="https://github.com/petbadger/ufo_sightings_presentation/blob/master/index.Rmd" target="_blank">See the code here</a>.)</div> 
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="slidefontcolor" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Number of Observations by Country</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">obs_by_country &lt;- as.data.frame(table(scrubbed$country) )
+names(obs_by_country) &lt;- c(&quot;Country&quot;, &quot;Count&quot;)
+</code></pre>
+
+<p><br\><br\></p>
+
+<pre><code class="r">knitr::kable(obs_by_country, format = &quot;html&quot; )
+</code></pre>
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Country </th>
+   <th style="text-align:right;"> Count </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> AU </td>
+   <td style="text-align:right;"> 538 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> CA </td>
+   <td style="text-align:right;"> 3000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> DE </td>
+   <td style="text-align:right;"> 105 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> GB </td>
+   <td style="text-align:right;"> 1905 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> US </td>
+   <td style="text-align:right;"> 65115 </td>
+  </tr>
+</tbody>
+</table>
+
+<p><br\><br\><br\><br\></p>
+
+<p>
+<a href="https://github.com/petbadger/ufo_sightings_presentation" target="_blank" alt="Slidify code">Code for this Slidify presentation</a>
+</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='A Shiny App for UFO Sightings'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Purpose of the App'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='About the Data'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Number of Observations by Country'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

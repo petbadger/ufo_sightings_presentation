@@ -1,0 +1,97 @@
+/*http://rmarkdown.rstudio.com/ioslides_presentation_format.html#custom_css*/
+
+.gdbar img {
+  width: 200px !important;
+  height: 150px !important;
+  margin: 10px 10px;
+}
+
+.gdbar {
+  width: 350px !important;
+  height: 170px !important;
+}
+
+aside.gdbar img {
+  width: 85px;
+  height: 65px;
+  position: absolute;
+  right: 0;
+  margin: 8px 15px;
+}
+
+/*slides > slide:not(.nobackground):before {
+  width: 70px;
+  height: 40px;
+  /*background-size: 90px 70px;*/
+/*}*/
+
+slides > slide.backdrop {
+  background: #2B3E50;
+}
+
+a:link {
+  color:red;
+}
+
+slides > h5,h4,h3,h2,h1 {
+  color:#cccccc;
+}
+
+.smallfont {
+  font-size:12px;
+  color:#cccccc;
+  font-style:italic;
+}
+
+title{
+  color:#ebebeb;
+}
+
+body{ /* Normal  */
+      font-size: 12px;
+      color:#ebebeb;
+  }
+td {  /* Table  */
+  font-size:16px;
+}
+
+code.r{ /* Code block */
+    font-size:16px;
+}
+pre { /* Code block - determines code spacing between lines */
+    font-size:10px;
+    line-height:1em;
+    color:#2B3E50; /*same as bg*/
+    background-color:#F9F3F0;
+    padding-bottom:1em;
+}
+
+/*https://stackoverflow.com/questions/30446905/rmarkdown-font-size-and-header*/
+
+
+.title-slide {
+  background-color: #2B3E50; /* #EDE0CF; ; #CA9F9D*/
+}
+
+/*.title-slide hgroup > h1{
+ font-family: 'Oswald', 'Helvetica', sanserif; 
+ 
+}*/
+
+.title-slide hgroup > h1, 
+.title-slide hgroup > h2 {
+  color: #F9F3F0 ;  /* ; #EF5150*/
+  
+}
+
+table{padding:1em;}
+
+h3,h4,h5{color:F9F3F0;}
+
+.slidefontcolor > hgroup > h2, 
+.slidefontcolor > article > p,
+.slidefontcolor > article > ul > li {color:#CCCCCC;}
+
+
+.firstslide > hgroup > h2,
+.firstslide > article > p {color:#cccccc;}

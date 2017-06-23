@@ -1,0 +1,105 @@
+---
+title       : Exploring UFO Sightings
+subtitle    : For Developing Data Products, Coursera
+author      : Jared Prins / PetBadger, (June 22, 2017)
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : spacelab      # was hitheme
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+logo        : ufo_icon.png
+--- .firstslide
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(dplyr)
+library(readr)
+library(ascii)
+```
+
+## A Shiny App for UFO Sightings
+
+View details and locations of UFO Sightings from around the world and for the past 100 years.
+
+<p align="center" style="width:100%;">
+<a href="#" target="_blank">
+<img src="assets/img/ufo_app_screenshot.png" alt="UFO Sightings Shiny App" style="width: 700px;height: 500px;"/>
+</a>
+</p>
+
+--- .slidefontcolor
+
+## Purpose of the App
+
+A [UFO Sightings Kaggle contest](https://www.kaggle.com/NUFORC/ufo-sightings) attempts to discover patterns of [UFO Sightings](https://github.com/planetsig/ufo-reports). The first step to finding patterns in this data is to become familiar with the data. 
+
+For my final project in the Cousera "Developing Data Products" course (as part of the Data Science Certification), I thought why not attempt to make something that could be useful for others? Throwing myself into the deep end of building a Shiny App helped me learn Shiny and hopefully created something usable outside of the virtual classroom.
+
+* <a href="https://petbadger.shinyapps.io/ufo_sightings/" target="_blank" alt="Shiny App">View the Shiny App</a>
+* <a href="https://github.com/petbadger/ufo_sightings/blob/master/get_started.md" target="_blank" alt="Using the app">Learn how to use the App</a>
+* <a href="https://github.com/petbadger/ufo_sightings" target="_blank" alt="App code">View the Github Repo</a>
+
+--- .slidefontcolor
+
+## About the Data
+
+```{r, echo=FALSE, include=FALSE}
+scrubbed <- readRDS("scrubbed.rdata")
+
+varlist <- read_csv("scrubbed.csv",col_names = TRUE, n_max = 1 ); varlist <- names(varlist)
+
+numvars <- length(varlist); numobs <- nrow(scrubbed)
+yearrange <- range(scrubbed$year, na.rm = TRUE); countrynum <- length(unique(scrubbed$country))
+numyears <- length(unique(scrubbed$year)); shapeslist <- unique(scrubbed$shape)
+numufo <- length(shapeslist)
+```
+
+* Data set: `r numvars` variables
+* Variables: `r varlist`
+* Total Observations: `r numobs` across `r countrynum` countries
+* Between the years: `r yearrange[1]` to `r yearrange[2]`
+* For a `r numufo` different UFO shapes: `r shapeslist`
+
+<div class="smallfont">(Note that this entire slide is dynamically driven. <a href="https://github.com/petbadger/ufo_sightings_presentation/blob/master/index.Rmd" target="_blank">See the code here</a>.)</div> 
+
+--- .slidefontcolor
+
+## Number of Observations by Country 
+
+```{r, echo=TRUE, include=TRUE}
+obs_by_country <- as.data.frame(table(scrubbed$country) )
+names(obs_by_country) <- c("Country", "Count")
+```
+
+<br\><br\>
+
+```{r, results="asis", echo=TRUE, include=TRUE}
+knitr::kable(obs_by_country, format = "html" )
+```
+
+<br\><br\><br\><br\>
+
+<p>
+<a href="https://github.com/petbadger/ufo_sightings_presentation" target="_blank" alt="Slidify code">Code for this Slidify presentation</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
